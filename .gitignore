@@ -1,0 +1,6 @@
+.project
+coverage
+Gemfile.lock
+.ruby-version
+groove-dl-*.gem
+**/*.glade~

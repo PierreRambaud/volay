@@ -1,0 +1,17 @@
+.gitignore
+.rubocop.yml
+.travis.yml
+Gemfile
+LICENSE
+MANIFEST
+README.md
+Rakefile
+bin/voltay
+glade/volay.glade
+lib/volay/config.rb
+lib/volay/controller/alsa.rb
+lib/volay/version.rb
+task/manifest.rake
+task/rubocop.rake
+task/spec.rake
+volay.gemspec

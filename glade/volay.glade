@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+  <requires lib="gtk+" version="3.12"/>
+  <object class="GtkStatusIcon" id="status_icon"/>
+  <object class="GtkAdjustment" id="volume_adjustement">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkScale" id="volume_scale">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="orientation">vertical</property>
+    <property name="adjustment">volume_adjustement</property>
+    <property name="inverted">True</property>
+    <property name="round_digits">1</property>
+    <property name="digits">0</property>
+  </object>
+</interface>

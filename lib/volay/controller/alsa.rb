@@ -1,4 +1,4 @@
-module Voltay
+module Volay
   module Controller
     class Alsa
       attr_reader :instance

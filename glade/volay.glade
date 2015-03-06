@@ -2,19 +2,67 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkStatusIcon" id="status_icon"/>
+  <object class="GtkMenu" id="popup_menu">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="popup_menu_quit">
+        <property name="label">gtk-quit</property>
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="use_underline">True</property>
+        <property name="use_stock">True</property>
+        <signal name="activate" handler="on_popup_menu_quit_activate" swapped="no"/>
+      </object>
+    </child>
+  </object>
+  <object class="GtkStatusIcon" id="status_icon">
+    <property name="stock">gtk-apply</property>
+    <signal name="popup-menu" handler="on_status_icon_popup_menu" swapped="no"/>
+  </object>
   <object class="GtkAdjustment" id="volume_adjustement">
     <property name="upper">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on_volume_adjustement_value_changed" swapped="no"/>
   </object>
-  <object class="GtkScale" id="volume_scale">
+  <object class="GtkBox" id="volume_control_box">
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
+    <property name="can_focus">False</property>
     <property name="orientation">vertical</property>
-    <property name="adjustment">volume_adjustement</property>
-    <property name="inverted">True</property>
-    <property name="round_digits">1</property>
-    <property name="digits">0</property>
+    <child>
+      <object class="GtkScale" id="volume_scale">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="orientation">vertical</property>
+        <property name="adjustment">volume_adjustement</property>
+        <property name="inverted">True</property>
+        <property name="round_digits">1</property>
+        <property name="digits">0</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="togglebutton1">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="receives_default">True</property>
+        <property name="xalign">0.56999999284744263</property>
+        <property name="yalign">0.44999998807907104</property>
+        <property name="always_show_image">True</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
   </object>
 </interface>

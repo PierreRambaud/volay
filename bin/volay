@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require File.expand_path('../../lib/volay', __FILE__)
+
+cli = Volay::CLI.new
+cli.parse_options
+
+Gtk.init
+Volay::App.new('glade/volay.glade')
+Gtk.main

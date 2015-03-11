@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.12"/>
+  <requires lib="gtk+" version="3.6"/>
+  <object class="GtkIconFactory" id="icon_factory">
+    <sources>
+      <source stock-id="volume-high" filename="/glade/icons/volume-high.png"/>
+      <source stock-id="volume-medium" filename="/glade/icons/volume-medium.png"/>
+      <source stock-id="volume-muted" filename="/glade/icons/volume-muted.png"/>
+      <source stock-id="volume-low" filename="/glade/icons/volume-low.png"/>
+    </sources>
+  </object>
   <object class="GtkMenu" id="popup_menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -18,9 +26,15 @@
     </child>
   </object>
   <object class="GtkStatusIcon" id="status_icon">
-    <property name="stock">gtk-apply</property>
+    <property name="stock">volume-muted</property>
     <signal name="button-press-event" handler="on_status_icon_button_press_event" swapped="no"/>
     <signal name="popup-menu" handler="on_status_icon_popup_menu" swapped="no"/>
+  </object>
+  <object class="GtkAdjustment" id="volume_adjustement">
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+    <signal name="value-changed" handler="on_volume_adjustement_value_changed" swapped="no"/>
   </object>
   <object class="GtkWindow" id="system_tray_window">
     <property name="width_request">25</property>
@@ -49,6 +63,7 @@
             <property name="inverted">True</property>
             <property name="round_digits">0</property>
             <property name="digits">0</property>
+            <signal name="realize" handler="on_volume_scale_realize" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -57,15 +72,18 @@
           </packing>
         </child>
         <child>
-          <object class="GtkToggleButton" id="togglebutton1">
+          <object class="GtkToggleButton" id="toggle_mute">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can_focus">False</property>
             <property name="receives_default">True</property>
-            <property name="xalign">0.56999999284744263</property>
-            <property name="yalign">0.44999998807907104</property>
             <property name="always_show_image">True</property>
+            <signal name="toggled" handler="on_toggle_mute_toggled" swapped="no"/>
             <child>
-              <placeholder/>
+              <object class="GtkImage" id="toggle_mute_image">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="stock">volume-muted</property>
+              </object>
             </child>
           </object>
           <packing>
@@ -76,11 +94,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkAdjustment" id="volume_adjustement">
-    <property name="upper">100</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-    <signal name="value-changed" handler="on_volume_adjustement_value_changed" swapped="no"/>
   </object>
 </interface>

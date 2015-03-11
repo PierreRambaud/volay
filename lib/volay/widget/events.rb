@@ -1,3 +1,4 @@
+# Volay module
 module Volay
   # Widgets components
   module Widget

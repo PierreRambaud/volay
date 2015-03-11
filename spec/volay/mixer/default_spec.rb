@@ -21,4 +21,24 @@ describe 'Volay::Mixer::Default' do
   it 'should raise error when calling toggle' do
     expect { mixer.toggle }.to raise_error(NotImplementedError)
   end
+
+  it 'should raise error when calling current' do
+    expect { mixer.current }.to raise_error(NotImplementedError)
+  end
+
+  it 'should raise error when calling value' do
+    expect { mixer.value }.to raise_error(NotImplementedError)
+  end
+
+  it 'should raise error when calling max_value' do
+    expect { mixer.max_value }.to raise_error(NotImplementedError)
+  end
+
+  it 'should raise error when calling percent' do
+    expect { mixer.percent }.to raise_error(NotImplementedError)
+  end
+
+  it 'should raise error when calling muted' do
+    expect { mixer.muted? }.to raise_error(NotImplementedError)
+  end
 end

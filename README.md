@@ -1,5 +1,6 @@
 #Volay, the Volume System Tray
 
+[![Build Status](https://travis-ci.org/PierreRambaud/volay.svg)](https://travis-ci.org/PierreRambaud/volay)
 
 ##Requirements
 

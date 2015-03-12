@@ -83,7 +83,7 @@ describe 'Volay::App' do
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
 <interface>
-  <requires lib="gtk+" version="3.12"/>
+  <requires lib="gtk+" version="3.2"/>
   <object class="GtkIconFactory" id="icon_factory">
     <sources>
   <source stock-id="volume-muted" filename="/glade/icons/volume-muted.png"/>

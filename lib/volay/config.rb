@@ -3,14 +3,38 @@ module Volay
   # Config class
   class Config
     attr_reader :logger
+    attr_reader :options
 
     ##
-    # Get config directory
+    # Get option
     #
-    # @return [String]
+    # @return [Mixed]
     #
-    def self.config_dir
-      File.expand_path('~/.config/volay')
+    def self.init_config
+      File.write(config_file, '') unless File.exist?(config_file)
+
+      logger.level = get(:log_level)
+    end
+
+    ##
+    # Get option
+    #
+    # @return [Mixed]
+    #
+    def self.get(option)
+      @options ||= {}
+      @options[option.to_sym] if @options.key?(option.to_sym)
+    end
+
+    ##
+    # Set option
+    #
+    # @param [String|Symbol] option Option key
+    # @param [Mixed] value Option value
+    #
+    def self.set(option, value)
+      @options ||= {}
+      @options[option.to_sym] = value
     end
 
     ##
@@ -19,7 +43,7 @@ module Volay
     # @return [String]
     #
     def self.config_file
-      File.join(config_dir, 'config')
+      File.expand_path('~/.volay')
     end
 
     ##

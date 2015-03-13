@@ -3,6 +3,8 @@ require File.expand_path('../../lib/volay', __FILE__)
 
 cli = Volay::CLI.new
 cli.parse_options
+Volay::Config.set(:log_level, cli.config[:log_level])
+Volay::Config.init_config
 
 Gtk.init
 Volay::App.new('glade/volay.glade')

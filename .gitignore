@@ -2,5 +2,6 @@
 coverage
 Gemfile.lock
 .ruby-version
-groove-dl-*.gem
+volay-*.gem
 **/*.glade~
+pkg

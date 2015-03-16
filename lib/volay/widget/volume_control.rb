@@ -5,11 +5,12 @@ module Volay
     # Events class
     class VolumeControl < Events
       ##
-      # When volume_scalle is realized
+      # When system tray window is showed
       #
-      def on_volume_scale_realize
+      def on_system_tray_window_show
         @app.get_object('volume_adjustement')
           .value = @app.mixer.percent
+        @app.utils.update_status_icon
       end
 
       ##

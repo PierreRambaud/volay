@@ -1,11 +1,34 @@
 #!/usr/bin/env ruby
 require File.expand_path('../../lib/volay', __FILE__)
 
-cli = Volay::CLI.new
-cli.parse_options
-Volay::Config.set(:log_level, cli.config[:log_level])
-Volay::Config.init_config
+# Module volay
+module Volay
+  # Main class to display app or control volume
+  class Main
+    def initialize
+      cli = Volay::CLI.new
+      cli.parse_options
+      Volay::Config.set(:log_level, cli.config[:log_level])
+      Volay::Config.init_config
+      if [:up, :down, :mute].any? { |k| cli.config.key?(k) }
+        sound(cli.config)
+      else
+        app
+      end
+    end
 
-Gtk.init
-Volay::App.new('glade/volay.glade')
-Gtk.main
+    def sound(config)
+      Volay::Config.mixer.up(config[:up]) unless config[:up].nil?
+      Volay::Config.mixer.down(config[:down]) unless config[:down].nil?
+      Volay::Config.mixer.toggle if config[:mute]
+    end
+
+    def app
+      Gtk.init
+      Volay::App.new('glade/volay.glade')
+      Gtk.main
+    end
+  end
+end
+
+Volay::Main.new

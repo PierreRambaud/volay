@@ -35,10 +35,10 @@ module Volay
            description: 'Down volume',
            proc: proc { |l| l.to_i })
 
-    option(:muted,
+    option(:mute,
            short: '-m',
-           long: '--muted',
+           long: '--toggle-mute',
            boolean: true,
-           description: 'Mute volume')
+           description: 'Toggle mute')
   end
 end

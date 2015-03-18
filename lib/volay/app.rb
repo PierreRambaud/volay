@@ -20,28 +20,6 @@ module Volay
       initialize_events
     end
 
-    ##
-    # Cross-platform way of finding an executable in the $PATH.
-    #
-    # Example:
-    #   which('ruby') #=> /usr/bin/ruby
-    #   which('foo') #=> nil
-    #
-    # @param [String] cmd Which command
-    # @return [String|NilClass]
-    #
-    def which(cmd)
-      exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-      ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
-        exts.each do |ext|
-          exe = File.join(path, "#{cmd}#{ext}")
-          return exe if File.executable?(exe) && !File.directory?(exe)
-        end
-      end
-
-      nil
-    end
-
     private
 
     ##
@@ -63,13 +41,7 @@ module Volay
     # Initialize mixer for controlling volume
     #
     def initialize_mixer
-      @mixer ||= begin
-                   if which('amixer')
-                     Volay::Mixer::Alsa.new
-                   else
-                     fail MixerNotFound
-                   end
-                 end
+      @mixer ||= Volay::Config.mixer
     end
 
     ##

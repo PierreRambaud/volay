@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.authors = ['Pierre Rambaud']
   s.email = 'pierre.rambaud86@gmail.com'
   s.license = 'GPL-3.0'
-  s.summary = '.'
+  s.summary = 'The Volume system tray'
   s.homepage = 'http://github.com/PierreRambaud/volay'
-  s.description = ''
+  s.description = 'Really simple volume system tray written in ruby.'
   s.executables = ['volay']
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 

@@ -8,7 +8,13 @@
 
 ##Installation
 
-From Github
+From Rubygems:
+
+```
+$ gem install volay
+```
+
+From Github:
 
 ```
 $ git clone https://github.com/PierreRambaud/volay.git
@@ -19,7 +25,17 @@ $ bundle exec rake install
 
 ## Usage
 
-TODO
+```bash
+$ volay -h
+Volay, the Volume System Tray.
+    -d, --down PERCENT               Down volume
+    -l, --log_level LEVEL            Set the log level (debug, info, warn, error, fatal)
+    -m, --toggle-mute                Toggle mute
+    -u, --up PERCENT                 Up volume
+    -h, --help                       Show this message
+```
+
+If no arguments are passed, the Gtk app is launched.
 
 ## Running tests
 

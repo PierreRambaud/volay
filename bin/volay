@@ -25,7 +25,7 @@ module Volay
 
     def app
       Gtk.init
-      Volay::App.new('glade/volay.glade')
+      Volay::App.new(File.expand_path('../../glade/volay.glade', __FILE__))
       Gtk.main
     end
   end

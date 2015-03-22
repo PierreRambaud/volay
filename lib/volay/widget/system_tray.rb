@@ -16,6 +16,9 @@ module Volay
       def on_status_icon_button_press_event(_widget, event)
         return unless event.is_a?(Gdk::EventButton) &&
                       event.button == LEFT_CLICK
+        return on_system_tray_window_focus_out_event if
+          @app.get_object('system_tray_window').visible?
+
         window = @app.get_object('system_tray_window')
         posx, posy = get_position(window)
         window.move(posx, posy)

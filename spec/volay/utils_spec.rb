@@ -6,6 +6,7 @@ describe 'Volay::Utils' do
     def prepare(image, muted, volume_percent)
       app = double
       toggle_image = double
+      toggle_button = double
       status_icon = double
       mixer = double
       allow(app).to receive(:mixer).and_return(mixer)
@@ -13,6 +14,9 @@ describe 'Volay::Utils' do
         .with('status_icon').and_return(status_icon)
       allow(app).to receive(:get_object)
         .with('toggle_mute_image').and_return(toggle_image)
+      allow(app).to receive(:get_object)
+        .with('toggle_mute').and_return(toggle_button)
+      allow(toggle_button).to receive(:set_active).and_return(muted)
       allow(mixer).to receive(:muted?)
         .and_return(muted)
       allow(mixer).to receive(:percent)

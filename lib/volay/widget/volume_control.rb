@@ -28,7 +28,7 @@ module Volay
       #
       def on_toggle_mute_toggled
         Thread.new do
-          @app.mixer.toggle
+          @app.mixer.toggle unless widget.active? && @app.mixer.muted?
           @app.utils.update_status_icon
         end
       end

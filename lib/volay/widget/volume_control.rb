@@ -26,9 +26,10 @@ module Volay
       ##
       # When mute toggle image is clicked
       #
-      def on_toggle_mute_toggled
+      def on_toggle_mute_toggled(widget)
         Thread.new do
-          @app.mixer.toggle unless widget.active? && @app.mixer.muted?
+          @app.mixer.toggle unless (widget.active? && @app.mixer.muted?) ||
+                                   (!widget.active? && !@app.mixer.muted?)
           @app.utils.update_status_icon
         end
       end

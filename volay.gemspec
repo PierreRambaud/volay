@@ -15,13 +15,13 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
 
   s.add_dependency 'mixlib-cli', '~>1.5'
-  s.add_dependency 'mixlib-shellout', '~>2.0'
-  s.add_dependency 'gtk3', '~>2.2'
+  s.add_dependency 'mixlib-shellout', '~>2.2'
+  s.add_dependency 'gtk3', '~>3.0'
 
   s.add_development_dependency 'fakefs', '~>0.6'
-  s.add_development_dependency 'rake', '~>10.0'
+  s.add_development_dependency 'rake', '~>10.5'
   s.add_development_dependency 'rack-test', '~>0.6'
-  s.add_development_dependency 'rspec', '~>3.0'
-  s.add_development_dependency 'simplecov', '~>0.9'
-  s.add_development_dependency 'rubocop', '~>0.25'
+  s.add_development_dependency 'rspec', '~>3.4'
+  s.add_development_dependency 'simplecov', '~>0.11'
+  s.add_development_dependency 'rubocop', '~>0.35'
 end

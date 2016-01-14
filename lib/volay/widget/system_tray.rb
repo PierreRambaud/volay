@@ -58,7 +58,8 @@ module Volay
       # @param [Gtk::Window] window Window
       #
       def get_position(window)
-        screen, rectangle, orientation = @app.get_object('status_icon').geometry
+        _e, screen, rectangle, orientation = @app.get_object('status_icon')
+                                             .geometry
         window.set_screen(screen)
         monitor_num = screen.get_monitor_at_point(rectangle.x, rectangle.y)
         monitor = screen.get_monitor_geometry(monitor_num)

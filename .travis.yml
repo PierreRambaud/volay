@@ -7,7 +7,6 @@ rvm:
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - apt-cache search libgirepository
 
 script: bundle exec rake
 
@@ -21,4 +20,4 @@ addons:
       - libcairo2-dev # for utils
       - libicu-dev # for extra unicode functions
       - libgraphite2-dev # for extra shapers
-      - # libgirepository1.0-dev # for gobject-introspection
+      - libgirepository1.0-dev # for gobject-introspection

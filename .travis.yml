@@ -9,3 +9,15 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script: bundle exec rake
+
+addons:
+  apt:
+    packages:
+      - pkg-config
+      - gtk-doc-tools
+      - libfreetype6-dev # for font function
+      - libglib2.0-dev # for font functions / tests / utils
+      - libcairo2-dev # for utils
+      - libicu-dev # for extra unicode functions
+      - libgraphite2-dev # for extra shapers
+      - # libgirepository1.0-dev # for gobject-introspection

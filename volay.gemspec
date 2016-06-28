@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 1.9.3'
 
-  s.add_dependency 'mixlib-cli', '~>1.5'
+  s.add_dependency 'mixlib-cli', '=1.5.0'
   s.add_dependency 'mixlib-shellout', '~>2.2'
   s.add_dependency 'gtk3', '~>3.0'
 

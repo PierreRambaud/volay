@@ -19,10 +19,10 @@ module Volay
     def update_status_icon
       icon = status_icon
       @app.get_object('status_icon')
-        .set_stock(icon)
+          .set_stock(icon)
       @app.get_object('toggle_mute').set_active(@app.mixer.muted?)
       @app.get_object('toggle_mute_image')
-        .set_stock(icon)
+          .set_stock(icon)
     end
 
     def status_icon

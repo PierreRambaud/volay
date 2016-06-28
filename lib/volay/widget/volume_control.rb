@@ -9,7 +9,7 @@ module Volay
       #
       def on_system_tray_window_show
         @app.get_object('volume_adjustement')
-          .value = @app.mixer.percent
+            .value = @app.mixer.percent
         @app.utils.update_status_icon
       end
 

@@ -59,7 +59,7 @@ module Volay
       #
       def get_position(window)
         _e, screen, rectangle, orientation = @app.get_object('status_icon')
-                                             .geometry
+                                                 .geometry
         window.set_screen(screen)
         monitor_num = screen.get_monitor_at_point(rectangle.x, rectangle.y)
         monitor = screen.get_monitor_geometry(monitor_num)
@@ -75,16 +75,16 @@ module Volay
             posy = rectangle.y
           end
         else
-          if (rectangle.y + rectangle.height + window_height <=
-              monitor.y + monitor.height)
+          total = rectangle.y + rectangle.height + window_height
+          if total <= monitor.y + monitor.height
             posy = rectangle.y + rectangle.height
           else
             posy = rectangle.y - window_height
-            if (rectangle.x + window_width <= monitor.x + monitor.width)
-              posx = rectangle.x
-            else
-              posx = monitor.x + monitor.width - window_width
-            end
+            posx = if rectangle.x + window_width <= monitor.x + monitor.width
+                     rectangle.x
+                   else
+                     monitor.x + monitor.width - window_width
+                   end
           end
         end
 

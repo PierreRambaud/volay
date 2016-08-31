@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.executables = ['volay']
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0'
 
   s.add_dependency 'mixlib-cli', '=1.5.0'
   s.add_dependency 'mixlib-shellout', '~>2.2'

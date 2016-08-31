@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'fakefs', '~>0.6'
   s.add_development_dependency 'rake', '~>10.5'
+  s.add_development_dependency 'rack', '~>1.6'
   s.add_development_dependency 'rack-test', '~>0.6'
   s.add_development_dependency 'rspec', '~>3.4'
   s.add_development_dependency 'simplecov', '~>0.11'

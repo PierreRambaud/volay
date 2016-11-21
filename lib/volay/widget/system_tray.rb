@@ -6,6 +6,7 @@ module Volay
     class SystemTray < Events
       LEFT_CLICK = 1
       RIGHT_CLICK = 3
+      M_KEYCODE = 47
 
       ##
       # When left click on the status icon, popup the window menu
@@ -30,6 +31,16 @@ module Volay
       #
       def on_system_tray_window_focus_out_event
         @app.get_object('system_tray_window').hide
+      end
+
+      ##
+      # Check for M keycode to toggle mute
+      #
+      def on_system_tray_window_key_release_event(_widget, event)
+        return unless event.is_a?(Gdk::EventKey) &&
+                      event.hardware_keycode == M_KEYCODE
+        @app.mixer.toggle
+        @app.utils.update_status_icon
       end
 
       ##

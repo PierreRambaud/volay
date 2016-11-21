@@ -26,14 +26,16 @@ module Volay
     end
 
     def status_icon
-      case @app.mixer.percent
-      when 66..100
-        icon = 'volume-high'
-      when 33..65
-        icon = 'volume-medium'
-      when 0..32
-        icon = 'volume-low'
-      end unless @app.mixer.muted?
+      unless @app.mixer.muted?
+        case @app.mixer.percent
+        when 66..100
+          icon = 'volume-high'
+        when 33..65
+          icon = 'volume-medium'
+        when 0..32
+          icon = 'volume-low'
+        end
+      end
 
       icon.nil? ? 'volume-muted' : icon
     end

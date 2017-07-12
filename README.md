@@ -1,12 +1,12 @@
-#Volay, the Volume System Tray
+# Volay, the Volume System Tray
 
 [![Build Status](https://travis-ci.org/PierreRambaud/volay.svg)](https://travis-ci.org/PierreRambaud/volay)
 
-##Requirements
+## Requirements
 
  * Ruby 2.0 or newer
 
-##Installation
+## Installation
 
 From Rubygems:
 

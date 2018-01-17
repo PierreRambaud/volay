@@ -19,3 +19,6 @@ Style/FrozenStringLiteralComment:
   Exclude:
     - lib/volay/cli.rb
     - lib/volay/version.rb
+
+Performance/RegexpMatch:
+  Enabled: false

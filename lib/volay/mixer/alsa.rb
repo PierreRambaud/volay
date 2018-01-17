@@ -31,10 +31,12 @@ module Volay
         current_value = ((current_percent * max_value) / 100).to_i
         current_state = result.match(/\[([a-z]+)\]/)[1].to_s
 
-        { value: current_value,
+        {
+          value: current_value,
           max_value: max_value,
           percent: current_percent,
-          muted: current_state != 'on' }
+          muted: current_state != 'on'
+        }
       end
 
       private

@@ -60,7 +60,6 @@ module Volay
     #
     def self.mixer
       raise MixerNotFound unless which('amixer')
-
       @mixer ||= Volay::Mixer::Alsa.new
     end
 

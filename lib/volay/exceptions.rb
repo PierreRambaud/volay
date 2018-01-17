@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay Module
 module Volay
   # Mixer not found

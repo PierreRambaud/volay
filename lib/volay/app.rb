@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # App class

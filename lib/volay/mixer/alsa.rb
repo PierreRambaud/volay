@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # Mixer module
@@ -32,7 +34,7 @@ module Volay
         { value: current_value,
           max_value: max_value,
           percent: current_percent,
-          muted: current_state == 'on' ? false : true }
+          muted: current_state != 'on' }
       end
 
       private

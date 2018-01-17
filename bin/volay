@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require File.expand_path('../../lib/volay', __FILE__)
 
 # Module volay
@@ -10,7 +12,7 @@ module Volay
       cli.parse_options
       Volay::Config.set(:log_level, cli.config[:log_level])
       Volay::Config.init_config
-      if [:up, :down, :mute].any? { |k| cli.config.key?(k) }
+      if %i[up down mute].any? { |k| cli.config.key?(k) }
         sound(cli.config)
       else
         app
@@ -24,7 +26,6 @@ module Volay
     end
 
     def app
-      Gtk.init
       Volay::App.new(File.expand_path('../../glade/volay.glade', __FILE__))
       Gtk.main
     end

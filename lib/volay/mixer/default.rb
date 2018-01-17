@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # Mixer module
@@ -8,28 +10,28 @@ module Volay
       # Up the volume
       #
       def up(*)
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       ##
       # Down the volume
       #
       def down(*)
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       ##
       # Set the volume
       #
       def value=(*)
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       ##
       # Toggle mute
       #
       def toggle
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       ##
@@ -37,7 +39,7 @@ module Volay
       # percent and muted
       #
       def current
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       ##

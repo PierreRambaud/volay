@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 desc 'Generates the MANIFEST file'
 task :manifest do
   files  = `git ls-files`.split("\n").sort

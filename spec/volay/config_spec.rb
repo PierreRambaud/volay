@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'logger'
 require 'volay/config'
@@ -29,7 +31,7 @@ describe 'Volay::Config' do
     let(:config) do
       FileUtils.mkdir_p('/usr/bin')
       File.write('/usr/bin/ruby', '')
-      File.chmod(0777, '/usr/bin/ruby')
+      File.chmod(0o777, '/usr/bin/ruby')
     end
 
     it 'should find ruby executable' do
@@ -47,7 +49,7 @@ describe 'Volay::Config' do
     def app_mixer(prog)
       FileUtils.mkdir_p('/usr/bin')
       File.write("/usr/bin/#{prog}", '')
-      File.chmod(0777, "/usr/bin/#{prog}")
+      File.chmod(0o777, "/usr/bin/#{prog}")
     end
 
     it 'should not return pulseaudio' do

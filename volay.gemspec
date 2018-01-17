@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('../lib/volay/version', __FILE__)
 
 Gem::Specification.new do |s|
@@ -12,16 +14,17 @@ Gem::Specification.new do |s|
   s.executables = ['volay']
   s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '> 2.3'
 
-  s.add_dependency 'mixlib-cli', '~>1.5'
-  s.add_dependency 'mixlib-shellout', '~>2.0'
-  s.add_dependency 'gtk3', '~>2.2'
+  s.add_dependency 'glib2', '~>3.2'
+  s.add_dependency 'gtk3', '~>3.2'
+  s.add_dependency 'mixlib-cli', '~>1.7'
+  s.add_dependency 'mixlib-shellout', '~>2.3'
 
-  s.add_development_dependency 'fakefs', '~>0.6'
-  s.add_development_dependency 'rake', '~>10.0'
-  s.add_development_dependency 'rack-test', '~>0.6'
-  s.add_development_dependency 'rspec', '~>3.0'
-  s.add_development_dependency 'simplecov', '~>0.9'
-  s.add_development_dependency 'rubocop', '~>0.25'
+  s.add_development_dependency 'fakefs', '~>0.13'
+  s.add_development_dependency 'rack-test', '~>0.8'
+  s.add_development_dependency 'rake', '~>12.0'
+  s.add_development_dependency 'rspec', '~>3.7'
+  s.add_development_dependency 'rubocop', '~>0.52'
+  s.add_development_dependency 'simplecov', '~>0.15'
 end

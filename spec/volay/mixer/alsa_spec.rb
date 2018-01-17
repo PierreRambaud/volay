@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'mixlib/shellout'
 require 'volay/mixer/default'
@@ -38,15 +40,15 @@ describe 'Volay::Mixer::Alsa' do
   end
 
   it 'should raise error when calling current' do
-    stdout = <<-EOF
-Simple mixer control 'Master',0
+    stdout = <<-OUTPUT
+  Simple mixer control 'Master',0
   Capabilities: pvolume pswitch pswitch-joined
   Playback channels: Front Left - Front Right
   Limits: Playback 0 - 65536
   Mono:
   Front Left: Playback 13108 [20%] [off]
   Front Right: Playback 13108 [20%] [off]
-EOF
+OUTPUT
     stub_shellout('get Master', stdout)
     expect(mixer.current).to eq(value: 13_107,
                                 max_value: 65_536,

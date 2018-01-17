@@ -19,7 +19,7 @@ module Volay
            short: '-l LEVEL',
            long: '--log_level LEVEL',
            description: 'Set the log level (debug, info, warn, error, fatal)',
-           in: %w(debug info warn error fatal),
+           in: %I[debug info warn error fatal],
            default: :info,
            proc: proc { |l| l.to_sym })
 

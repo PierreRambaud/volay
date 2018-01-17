@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # Widgets components
@@ -13,7 +15,7 @@ module Volay
         @app = app
 
         methods.each do |name|
-          next unless name.match(/^on_/)
+          next unless name.match?(/^on_/)
           @app.signals_list[name.to_s] = method(name)
         end
       end

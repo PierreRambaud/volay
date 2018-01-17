@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # Widgets components
@@ -58,7 +60,11 @@ module Volay
       # @param [Gtk::Window] window Window
       #
       def get_position(window)
-        screen, rectangle, orientation = @app.get_object('status_icon').geometry
+        _n,
+        screen,
+        rectangle,
+        orientation = @app.get_object('status_icon').geometry
+
         window.set_screen(screen)
         monitor_num = screen.get_monitor_at_point(rectangle.x, rectangle.y)
         monitor = screen.get_monitor_geometry(monitor_num)
@@ -73,18 +79,16 @@ module Volay
             posx = rectangle.x + rectangle.width
             posy = rectangle.y
           end
+        elsif rectangle.y + rectangle.height + window_height <=
+              monitor.y + monitor.height
+          posy = rectangle.y + rectangle.height
         else
-          if (rectangle.y + rectangle.height + window_height <=
-              monitor.y + monitor.height)
-            posy = rectangle.y + rectangle.height
-          else
-            posy = rectangle.y - window_height
-            if (rectangle.x + window_width <= monitor.x + monitor.width)
-              posx = rectangle.x
-            else
-              posx = monitor.x + monitor.width - window_width
-            end
-          end
+          posy = rectangle.y - window_height
+          posx = if rectangle.x + window_width <= monitor.x + monitor.width
+                   rectangle.x
+                 else
+                   monitor.x + monitor.width - window_width
+                 end
         end
 
         [posx, posy]

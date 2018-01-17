@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Volay module
 module Volay
   # Config class
@@ -58,11 +60,8 @@ module Volay
     #
     def self.mixer
       @mixer ||= begin
-                   if which('amixer')
-                     Volay::Mixer::Alsa.new
-                   else
-                     fail MixerNotFound
-                   end
+                   raise MixerNotFound unless which('amixer')
+                   Volay::Mixer::Alsa.new
                  end
     end
 

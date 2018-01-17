@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'fakefs/spec_helpers'
 require 'gtk3'
@@ -14,9 +16,6 @@ describe 'Volay::App' do
   include FakeFS::SpecHelpers
 
   context '#events' do
-    def app_events
-    end
-
     it 'should return alsa' do
       allow_any_instance_of(Volay::App).to receive(:initialize_mixer)
       allow_any_instance_of(Volay::App).to receive(:initialize_ui)
@@ -35,18 +34,18 @@ describe 'Volay::App' do
       allow_any_instance_of(Volay::App).to receive(:initialize_mixer)
       allow_any_instance_of(Volay::App).to receive(:initialize_events)
 
-      xml = <<-EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
-<interface>
-  <requires lib="gtk+" version="3.2"/>
-  <object class="GtkIconFactory" id="icon_factory">
-    <sources>
-  <source stock-id="volume-muted" filename="/glade/icons/volume-muted.png"/>
-    </sources>
-  </object>
-</interface>
-EOF
+      xml = <<-XML
+  <?xml version="1.0" encoding="UTF-8"?>
+  <!-- Generated with glade 3.18.3 -->
+  <interface>
+    <requires lib="gtk+" version="3.2"/>
+    <object class="GtkIconFactory" id="icon_factory">
+      <sources>
+    <source stock-id="volume-muted" filename="/glade/icons/volume-muted.png"/>
+      </sources>
+    </object>
+  </interface>
+XML
 
       File.write('something', xml)
       app = Volay::App.new('something')

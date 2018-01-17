@@ -59,10 +59,9 @@ module Volay
     # Initialize mixer for controlling volume
     #
     def self.mixer
-      @mixer ||= begin
-                   raise MixerNotFound unless which('amixer')
-                   Volay::Mixer::Alsa.new
-                 end
+      raise MixerNotFound unless which('amixer')
+
+      @mixer ||= Volay::Mixer::Alsa.new
     end
 
     ##

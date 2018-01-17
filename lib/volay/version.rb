@@ -2,5 +2,5 @@
 
 # Volay module
 module Volay
-  VERSION = '0.7.0'
+  VERSION = '1.2.0'
 end

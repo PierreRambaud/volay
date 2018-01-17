@@ -1,12 +1,26 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
+  - 2.2.5
+  - 2.3.1
+
+env:
+  global:
+    - DISPLAY=":99.0"
 
 before_install:
-  - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - sudo apt-get install -y libgirepository1.0-dev
 
 script: bundle exec rake
+
+addons:
+  apt:
+    packages:
+      - pkg-config
+      - gtk-doc-tools
+      - libgtk-3-dev
+      - libfreetype6-dev # for font function
+      - libglib2.0-dev # for font functions / tests / utils
+      - libcairo2-dev # for utils
+      - libicu-dev # for extra unicode functions
+      - libgraphite2-dev # for extra shapers
+      - libgirepository1.0-dev # for gobject-introspection

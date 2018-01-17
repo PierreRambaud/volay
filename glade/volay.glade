@@ -49,6 +49,7 @@
     <property name="decorated">False</property>
     <property name="deletable">False</property>
     <signal name="focus-out-event" handler="on_system_tray_window_focus_out_event" swapped="no"/>
+    <signal name="key-release-event" handler="on_system_tray_window_key_release_event" swapped="no"/>
     <signal name="show" handler="on_system_tray_window_show" swapped="no"/>
     <child>
       <object class="GtkBox" id="volume_control_box">

@@ -9,14 +9,14 @@ require 'volay/widget/events'
 require 'volay/widget/system_tray'
 require 'volay/widget/volume_control'
 require 'volay/mixer/default'
-require 'volay/mixer/alsa'
+require 'volay/mixer/pulse'
 require 'volay/exceptions'
 
 describe 'Volay::App' do
   include FakeFS::SpecHelpers
 
   context '#events' do
-    it 'should return alsa' do
+    it 'should initiliaze events' do
       allow_any_instance_of(Volay::App).to receive(:initialize_mixer)
       allow_any_instance_of(Volay::App).to receive(:initialize_ui)
       allow_any_instance_of(Volay::Utils).to receive(:update_status_icon)
@@ -30,7 +30,7 @@ describe 'Volay::App' do
   end
 
   context '#ui' do
-    it 'should return alsa' do
+    it 'should initialize events' do
       allow_any_instance_of(Volay::App).to receive(:initialize_mixer)
       allow_any_instance_of(Volay::App).to receive(:initialize_events)
 

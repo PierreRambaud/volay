@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'logger'
 require 'volay/config'
 require 'volay/mixer/default'
-require 'volay/mixer/alsa'
+require 'volay/mixer/pulse'
 require 'volay/exceptions'
 
 describe 'Volay::Config' do
@@ -39,9 +39,9 @@ describe 'Volay::Config' do
       expect(Volay::Config.which('ruby')).to eq('/usr/bin/ruby')
     end
 
-    it "shouldn't find amixer executable" do
+    it "shouldn't find pacmd executable" do
       config
-      expect(Volay::Config.which('amixer')).to be_nil
+      expect(Volay::Config.which('pacmd')).to be_nil
     end
   end
 
@@ -53,14 +53,16 @@ describe 'Volay::Config' do
     end
 
     it 'should not return pulseaudio' do
-      app_mixer('pulseaudio-ctl')
       expect { Volay::Config.mixer }
         .to raise_error(Volay::MixerNotFound)
     end
 
-    it 'should return alsa' do
-      app_mixer('amixer')
-      expect(Volay::Config.mixer).to be_a(Volay::Mixer::Alsa)
+    it 'should return a mixer' do
+      Volay::Config.logger.level = :info
+      allow_any_instance_of(Mixlib::ShellOut).to receive(:new).twice
+      allow_any_instance_of(Mixlib::ShellOut).to receive(:run_command)
+      app_mixer('pacmd')
+      expect(Volay::Config.mixer).to be_a(Volay::Mixer::Pulse)
     end
   end
 end

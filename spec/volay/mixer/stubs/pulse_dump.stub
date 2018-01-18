@@ -1,0 +1,56 @@
+### Configuration dump generated at Thu Jan 18 14:15:24 2018
+
+load-module module-device-restore
+load-module module-stream-restore
+load-module module-card-restore
+load-module module-augment-properties
+load-module module-switch-on-port-available
+load-module module-udev-detect
+load-module module-alsa-card device_id="1" name="pci-0000_01_00.1" card_name="alsa_card.pci-0000_01_00.1" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1"
+load-module module-alsa-card device_id="2" name="usb-046d_0825_139A6900-02" card_name="alsa_card.usb-046d_0825_139A6900-02" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1"
+load-module module-alsa-card device_id="0" name="pci-0000_00_1f.3" card_name="alsa_card.pci-0000_00_1f.3" namereg_fail=false tsched=yes fixed_latency_range=no ignore_dB=no deferred_volume=yes use_ucm=yes card_properties="module-udev-detect.discovered=1"
+load-module module-bluetooth-policy
+load-module module-bluetooth-discover
+load-module module-bluez5-discover
+load-module module-native-protocol-unix
+load-module module-default-device-restore
+load-module module-rescue-streams
+load-module module-always-sink
+load-module module-intended-roles
+load-module module-suspend-on-idle
+load-module module-console-kit
+load-module module-systemd-login
+load-module module-position-event-sounds
+load-module module-role-cork
+load-module module-filter-heuristics
+load-module module-filter-apply
+load-module module-cli-protocol-unix
+
+set-sink-volume alsa_output.pci-0000_01_00.1.hdmi-stereo 0x10000
+set-sink-mute alsa_output.pci-0000_01_00.1.hdmi-stereo no
+suspend-sink alsa_output.pci-0000_01_00.1.hdmi-stereo no
+set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo 0x51eb
+set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo no
+suspend-sink alsa_output.pci-0000_00_1f.3.analog-stereo yes
+
+set-source-volume alsa_output.pci-0000_01_00.1.hdmi-stereo.monitor 0x10000
+set-source-mute alsa_output.pci-0000_01_00.1.hdmi-stereo.monitor no
+suspend-source alsa_output.pci-0000_01_00.1.hdmi-stereo.monitor no
+set-source-volume alsa_input.usb-046d_0825_139A6900-02.analog-mono 0xf1ad
+set-source-mute alsa_input.usb-046d_0825_139A6900-02.analog-mono no
+suspend-source alsa_input.usb-046d_0825_139A6900-02.analog-mono yes
+set-source-volume alsa_input.pci-0000_00_1f.3.analog-stereo 0x276d
+set-source-mute alsa_input.pci-0000_00_1f.3.analog-stereo no
+suspend-source alsa_input.pci-0000_00_1f.3.analog-stereo yes
+set-source-volume alsa_output.pci-0000_00_1f.3.analog-stereo.monitor 0x10000
+set-source-mute alsa_output.pci-0000_00_1f.3.analog-stereo.monitor no
+suspend-source alsa_output.pci-0000_00_1f.3.analog-stereo.monitor yes
+
+set-card-profile alsa_card.pci-0000_01_00.1 output:hdmi-stereo
+set-card-profile alsa_card.usb-046d_0825_139A6900-02 input:analog-mono
+set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+
+set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo
+set-default-source alsa_output.pci-0000_01_00.1.hdmi-stereo.monitor
+
+### EOF

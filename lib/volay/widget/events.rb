@@ -18,6 +18,8 @@ module Volay
           next unless name =~ /^on_/
           @app.signals_list[name.to_s] = method(name)
         end
+
+        init if respond_to?('init')
       end
     end
   end

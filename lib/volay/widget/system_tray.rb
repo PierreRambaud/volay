@@ -11,6 +11,34 @@ module Volay
       M_KEYCODE = 47
 
       ##
+      # When popup window menu is draw
+      #
+      def init
+        return unless @app&.mixer&.cards
+
+        cards_menu = Gtk::MenuItem.new(label: 'Cards')
+        menu = Gtk::Menu.new
+        last_item = nil
+        @app.mixer.cards.each do |id, card|
+          radio_menu_item = Gtk::RadioMenuItem.new(nil, card['long_name'])
+          radio_menu_item.join_group(last_item) if last_item
+          radio_menu_item.name = "card_menu_#{id}"
+          radio_menu_item.active = @app.mixer.default_sink_id == id
+          last_item = radio_menu_item
+          menu.append(radio_menu_item)
+
+          radio_menu_item.signal_connect('activate') do |widget|
+            next unless widget.active?
+            @app.mixer.change_card(id)
+            @app.utils.update_status_icon
+          end
+        end
+
+        cards_menu.submenu = menu
+        @app.get_object('popup_menu').prepend(cards_menu)
+      end
+
+      ##
       # When left click on the status icon, popup the window menu
       #
       # @param [Gtk::Widget] widget Widget

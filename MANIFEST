@@ -17,8 +17,8 @@ lib/volay/app.rb
 lib/volay/cli.rb
 lib/volay/config.rb
 lib/volay/exceptions.rb
-lib/volay/mixer/alsa.rb
 lib/volay/mixer/default.rb
+lib/volay/mixer/pulse.rb
 lib/volay/utils.rb
 lib/volay/version.rb
 lib/volay/volay.rb
@@ -28,8 +28,8 @@ lib/volay/widget/volume_control.rb
 spec/spec_helper.rb
 spec/volay/app_spec.rb
 spec/volay/config_spec.rb
-spec/volay/mixer/alsa_spec.rb
 spec/volay/mixer/default_spec.rb
+spec/volay/mixer/pulse_spec.rb
 spec/volay/utils_spec.rb
 spec/volay/widget/volume_control_spec.rb
 task/manifest.rake

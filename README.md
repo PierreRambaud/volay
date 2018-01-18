@@ -4,7 +4,7 @@
 
 ## Requirements
 
- * Ruby 2.0 or newer
+ * Ruby 2.3 or newer
 
 ## Installation
 

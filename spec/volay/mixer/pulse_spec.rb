@@ -26,13 +26,13 @@ describe 'Volay::Mixer::Pulse' do
     stub_shellout(
       'dump',
       File.read(
-        File.expand_path('../stubs/pulse_dump.stub', __FILE__)
+        File.expand_path('stubs/pulse_dump.stub', __dir__)
       )
     )
     stub_shellout(
       "list-cards | grep -e device.string -e 'name:' -e 'card_name'",
       File.read(
-        File.expand_path('../stubs/pulse_list-cards.stub', __FILE__)
+        File.expand_path('stubs/pulse_list-cards.stub', __dir__)
       )
     )
   end

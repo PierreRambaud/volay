@@ -15,6 +15,7 @@ module Volay
       #
       def init
         return unless @app&.mixer&.cards
+        return if @app.mixer.cards.keys.count <= 1
 
         cards_menu = Gtk::MenuItem.new(label: 'Cards')
         menu = Gtk::Menu.new

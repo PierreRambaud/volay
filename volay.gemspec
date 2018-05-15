@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../lib/volay/version', __FILE__)
+require File.expand_path('lib/volay/version', __dir__)
 
 Gem::Specification.new do |s|
   s.name = 'volay'
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/PierreRambaud/volay'
   s.description = 'Really simple volume system tray written in ruby.'
   s.executables = ['volay']
-  s.files = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
+  s.files = File.read(File.expand_path('MANIFEST', __dir__)).split("\n")
 
   s.required_ruby_version = '> 2.3'
 

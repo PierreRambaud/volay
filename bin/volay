@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require File.expand_path('../../lib/volay', __FILE__)
+require File.expand_path('../lib/volay', __dir__)
 
 # Module volay
 module Volay
@@ -26,7 +26,7 @@ module Volay
     end
 
     def app
-      Volay::App.new(File.expand_path('../../glade/volay.glade', __FILE__))
+      Volay::App.new(File.expand_path('../glade/volay.glade', __dir__))
       Gtk.main
     end
   end

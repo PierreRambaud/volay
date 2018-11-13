@@ -12,17 +12,26 @@ describe 'Volay::Widget::VolumeControl' do
   end
 
   let(:vc) do
+    allow(Thread).to receive(:new).and_yield
     Volay::Widget::VolumeControl.new(app)
   end
 
   it 'on volume scale' do
     utils = double
     volume = double
-    allow(volume).to receive(:value=).and_return(20)
-    allow(app).to receive(:get_object).once.with('volume_adjustement')
-                                      .and_return(volume)
+
+    allow(volume).to receive(:value).once.and_return(20)
+    allow(utils).to receive(:update_status_icon).once.and_return(true)
+
+    allow(app).to receive(:utils).once.and_return(utils)
+    allow(app.mixer).to receive(:value=).with(20).once
+
+    vc.on_volume_adjustement_value_changed(volume)
+  end
+
+  it 'no volume mute' do
+    utils = double
     allow(app).to receive(:utils).once.and_return(utils)
     allow(utils).to receive(:update_status_icon).once.and_return(true)
-    allow(app.mixer).to receive(:percent).and_return(20)
   end
 end

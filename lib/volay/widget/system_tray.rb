@@ -129,6 +129,8 @@ module Volay
       # Refresh card menu items
       #
       def refresh_cards_menu
+        @app.get_object('popup_menu_cards').visible = false
+
         return unless @app&.mixer&.cards
         return if @app.mixer.cards.keys.count <= 1
 

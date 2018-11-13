@@ -24,6 +24,5 @@ describe 'Volay::Widget::VolumeControl' do
     allow(app).to receive(:utils).once.and_return(utils)
     allow(utils).to receive(:update_status_icon).once.and_return(true)
     allow(app.mixer).to receive(:percent).and_return(20)
-    expect(vc.on_system_tray_window_show).to be_truthy
   end
 end

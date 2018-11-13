@@ -55,9 +55,13 @@ module Volay
       # Override Icon path to prevent
       # Gtk-CRITICAL **:gtk_icon_source_set_filename:
       ui = File.read(path)
-      ui.gsub!(%r{/glade/icons},
-               File.expand_path('../glade/icons',
-                                File.dirname(__dir__)))
+      ui.gsub!(
+        %r{/glade/icons},
+        File.expand_path(
+          '../glade/icons',
+          File.dirname(__dir__)
+        )
+      )
       add_from_string(ui)
     end
   end

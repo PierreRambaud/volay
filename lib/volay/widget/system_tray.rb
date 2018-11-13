@@ -6,37 +6,15 @@ module Volay
   module Widget
     # Events class
     class SystemTray < Events
-      LEFT_CLICK = 1
-      RIGHT_CLICK = 3
-      M_KEYCODE = 47
+      KEYCODE_MOUSE_CLICK_LEFT = 1
+      KEYCODE_MOUSE_CLICK_RIGHT = 3
+      KEYCODE_M = 47
 
       ##
       # When popup window menu is draw
       #
       def init
-        return unless @app&.mixer&.cards
-        return if @app.mixer.cards.keys.count <= 1
-
-        cards_menu = Gtk::MenuItem.new(label: 'Cards')
-        menu = Gtk::Menu.new
-        last_item = nil
-        @app.mixer.cards.each do |id, card|
-          radio_menu_item = Gtk::RadioMenuItem.new(nil, card['long_name'])
-          radio_menu_item.join_group(last_item) if last_item
-          radio_menu_item.name = "card_menu_#{id}"
-          radio_menu_item.active = @app.mixer.default_sink_id == id
-          last_item = radio_menu_item
-          menu.append(radio_menu_item)
-
-          radio_menu_item.signal_connect('activate') do |widget|
-            next unless widget.active?
-            @app.mixer.change_card(id)
-            @app.utils.update_status_icon
-          end
-        end
-
-        cards_menu.submenu = menu
-        @app.get_object('popup_menu').prepend(cards_menu)
+        refresh_cards_menu
       end
 
       ##
@@ -47,7 +25,8 @@ module Volay
       #
       def on_status_icon_button_press_event(_widget, event)
         return unless event.is_a?(Gdk::EventButton) &&
-                      event.button == LEFT_CLICK
+                      event.button == KEYCODE_MOUSE_CLICK_LEFT
+
         return on_system_tray_window_focus_out_event if
           @app.get_object('system_tray_window').visible?
 
@@ -69,7 +48,8 @@ module Volay
       #
       def on_system_tray_window_key_release_event(_widget, event)
         return unless event.is_a?(Gdk::EventKey) &&
-                      event.hardware_keycode == M_KEYCODE
+                      event.hardware_keycode == KEYCODE_M
+
         @app.mixer.toggle
         @app.utils.update_status_icon
       end
@@ -91,6 +71,18 @@ module Volay
       #
       def on_popup_menu_quit_activate
         Gtk.main_quit
+      end
+
+      ##
+      # When system tray window is showed
+      #
+      def on_system_tray_window_show
+        @app.mixer.refresh
+        refresh_cards_menu
+
+        @app.get_object('volume_adjustement')
+            .value = @app.mixer.percent
+        @app.utils.update_status_icon
       end
 
       ##
@@ -129,6 +121,38 @@ module Volay
         end
 
         [posx, posy]
+      end
+
+      private
+
+      ##
+      # Refresh card menu items
+      #
+      def refresh_cards_menu
+        return unless @app&.mixer&.cards
+        return if @app.mixer.cards.keys.count <= 1
+
+        menu = Gtk::Menu.new
+        last_item = nil
+        @app.mixer.cards.each do |id, card|
+          radio_menu_item = Gtk::RadioMenuItem.new(nil, card['long_name'])
+          radio_menu_item.join_group(last_item) if last_item
+          radio_menu_item.name = "card_menu_#{id}"
+          radio_menu_item.visible = true
+          radio_menu_item.active = @app.mixer.default_sink_id == id
+          last_item = radio_menu_item
+          menu.append(radio_menu_item)
+
+          radio_menu_item.signal_connect('activate') do |widget|
+            next unless widget.active?
+
+            @app.mixer.change_card(id)
+            @app.utils.update_status_icon
+          end
+        end
+
+        @app.get_object('popup_menu_cards').visible = true
+        @app.get_object('popup_menu_cards').submenu = menu
       end
     end
   end

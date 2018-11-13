@@ -60,6 +60,7 @@ module Volay
     #
     def self.mixer
       raise MixerNotFound unless which('pacmd')
+
       @mixer ||= Volay::Mixer::Pulse.new
     end
 

@@ -77,17 +77,6 @@ module Volay
         refresh
       end
 
-      private
-
-      ##
-      # Get volume percent
-      #
-      # @return Integer
-      #
-      def volume_percent(value)
-        value * 100 / MAX_VALUE
-      end
-
       ##
       # Refresh cards data
       #
@@ -110,6 +99,17 @@ module Volay
         set_long_names
       end
 
+      private
+
+      ##
+      # Get volume percent
+      #
+      # @return Integer
+      #
+      def volume_percent(value)
+        value * 100 / MAX_VALUE
+      end
+
       ##
       # Set cards data such as default sink
       # volume and if card is muted
@@ -119,6 +119,7 @@ module Volay
       def set_data(args)
         @cards.each do |id, card|
           next if args[1].nil? || !args[1].include?(card['name'])
+
           case args[0]
           when 'set-default-sink'
             @default_sink_id = id

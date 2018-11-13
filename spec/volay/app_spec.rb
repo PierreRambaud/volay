@@ -45,7 +45,7 @@ describe 'Volay::App' do
       </sources>
     </object>
   </interface>
-XML
+      XML
 
       File.write('something', xml)
       app = Volay::App.new('something')

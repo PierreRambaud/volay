@@ -13,6 +13,14 @@
   <object class="GtkMenu" id="popup_menu">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="no_show_all">True</property>
+    <child>
+      <object class="GtkMenuItem" id="popup_menu_cards">
+        <property name="can_focus">False</property>
+        <property name="label">Cards</property>
+        <property name="use_underline">True</property>
+      </object>
+    </child>
     <child>
       <object class="GtkImageMenuItem" id="popup_menu_quit">
         <property name="label">gtk-quit</property>

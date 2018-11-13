@@ -7,15 +7,6 @@ module Volay
     # Events class
     class VolumeControl < Events
       ##
-      # When system tray window is showed
-      #
-      def on_system_tray_window_show
-        @app.get_object('volume_adjustement')
-            .value = @app.mixer.percent
-        @app.utils.update_status_icon
-      end
-
-      ##
       # When slider have its adjustement value changed
       #
       def on_volume_adjustement_value_changed(widget)

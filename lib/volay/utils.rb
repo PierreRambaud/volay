@@ -29,6 +29,7 @@ module Volay
 
     def status_icon
       return 'volume-muted' if @app.mixer.muted?
+
       if (66..100).cover?(@app.mixer.percent)
         'volume-high'
       elsif (33..65).cover?(@app.mixer.percent)

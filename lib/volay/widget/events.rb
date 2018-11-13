@@ -16,6 +16,7 @@ module Volay
 
         methods.each do |name|
           next unless name =~ /^on_/
+
           @app.signals_list[name.to_s] = method(name)
         end
 

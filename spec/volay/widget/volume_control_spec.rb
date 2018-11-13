@@ -31,7 +31,15 @@ describe 'Volay::Widget::VolumeControl' do
 
   it 'no volume mute' do
     utils = double
-    allow(app).to receive(:utils).once.and_return(utils)
+    volume = double
+
+    allow(volume).to receive(:active?).once.and_return(true)
     allow(utils).to receive(:update_status_icon).once.and_return(true)
+
+    allow(app).to receive(:utils).once.and_return(utils)
+    allow(app.mixer).to receive(:muted?).once.and_return(true)
+    allow(app.mixer).to receive(:toggle).once
+
+    vc.on_toggle_mute_toggled(volume)
   end
 end

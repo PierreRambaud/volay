@@ -16,15 +16,26 @@ describe 'Volay::App' do
   include FakeFS::SpecHelpers
 
   context '#events' do
+    let(:popup_menu_cards) do
+      pmc = double
+      allow(pmc).to receive(:visible=).and_return(true)
+
+      pmc
+    end
+
     it 'should initiliaze events' do
       allow_any_instance_of(Volay::App).to receive(:initialize_mixer)
       allow_any_instance_of(Volay::App).to receive(:initialize_ui)
       allow_any_instance_of(Volay::Utils).to receive(:update_status_icon)
       allow_any_instance_of(Volay::App).to receive(:connect_signals)
         .and_yield('on_status_icon_button_press_event')
+      allow_any_instance_of(Volay::App).to receive(:get_object)
+        .with('popup_menu_cards')
+        .and_return(popup_menu_cards)
 
       File.write('something', '')
       app = Volay::App.new('something')
+
       expect(app.signals_list).to be_a(Hash)
     end
   end

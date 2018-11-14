@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'gtk3'
 require 'volay/widget/system_tray'
 
 describe 'Volay::Widget::SystemTray' do
@@ -41,6 +42,30 @@ describe 'Volay::Widget::SystemTray' do
       .and_return(
         Volay::Widget::SystemTray::KEYCODE_MOUSE_CLICK_RIGHT
       )
+
+    expect(st.on_status_icon_button_press_event(double, event)).to be_nil
+  end
+
+  it 'on icon button pressed with invisible system tray' do
+    event = double
+    allow(event).to receive(:is_a?)
+      .once
+      .with(Gdk::EventButton)
+      .and_return(true)
+
+    allow(event).to receive(:button)
+      .once
+      .and_return(
+        Volay::Widget::SystemTray::KEYCODE_MOUSE_CLICK_LEFT
+      )
+
+    stw = double
+    allow(stw).to receive(:visible?).once.and_return(true)
+    allow(stw).to receive(:hide).once
+    allow(app).to receive(:get_object)
+      .with('system_tray_window')
+      .twice
+      .and_return(stw)
 
     expect(st.on_status_icon_button_press_event(double, event)).to be_nil
   end

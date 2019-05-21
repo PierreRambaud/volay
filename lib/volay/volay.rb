@@ -3,9 +3,8 @@
 require 'gtk3'
 require 'mixlib-cli'
 
-unless $LOAD_PATH.include?(File.expand_path('', __dir__))
-  $LOAD_PATH.unshift(File.expand_path('', __dir__))
-end
+$LOAD_PATH.unshift(File.expand_path('', __dir__)) unless
+  $LOAD_PATH.include?(File.expand_path('', __dir__))
 
 require 'volay/version'
 require 'volay/app'

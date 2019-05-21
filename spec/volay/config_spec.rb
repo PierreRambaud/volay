@@ -58,9 +58,22 @@ describe 'Volay::Config' do
     end
 
     it 'should return a mixer' do
+      run_command = double(
+        exitstatus: double(
+          zero?: true
+        )
+      )
+      shellout = double
+
       Volay::Config.logger.level = :info
-      allow_any_instance_of(Mixlib::ShellOut).to receive(:new).twice
-      allow_any_instance_of(Mixlib::ShellOut).to receive(:run_command)
+      allow_any_instance_of(Mixlib::ShellOut).to receive(:new)
+        .with('pacmd dump')
+        .and_return(shellout)
+
+      allow(shellout).to receive(:run_command)
+        .with("pacmd list-cards | grep -e device.string -e 'name:' -e 'card_name'")
+        .and_return(run_command)
+
       app_mixer('pacmd')
       expect(Volay::Config.mixer).to be_a(Volay::Mixer::Pulse)
     end

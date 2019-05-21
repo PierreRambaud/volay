@@ -34,6 +34,8 @@ module Volay
       end
 
       def toggle
+        return if current_sink.nil?
+
         value = if current_sink['muted'] == 'yes'
                   'no'
                 else
@@ -45,10 +47,10 @@ module Volay
 
       def current
         {
-          value: current_sink['volume'],
+          value: current_sink.nil? ? 0 : current_sink['volume'],
           max_value: MAX_VALUE,
-          percent: volume_percent(current_sink['volume']),
-          muted: current_sink['muted'] == 'yes'
+          percent: current_sink.nil? ? 0 : volume_percent(current_sink['volume']),
+          muted: current_sink.nil? ? true : current_sink['muted'] == 'yes'
         }
       end
 
@@ -81,7 +83,10 @@ module Volay
       # Refresh cards data
       #
       def refresh
-        dump = command('dump').lines
+        cmd = command('dump')
+        return unless cmd
+
+        dump = cmd.lines
         dump.each do |line|
           args = line.split
 
@@ -173,6 +178,8 @@ module Volay
       # @param [Integer] volume Volume to set up, must be a percentage
       #
       def set_volume(volume)
+        return if current_sink.nil?
+
         volume = [[0, (volume * MAX_VALUE / 100)].max, MAX_VALUE].min
         @cards[@default_sink_id]['volume'] = volume
         sink = @cards[@default_sink_id]['sink']
@@ -189,6 +196,9 @@ module Volay
         result = Mixlib::ShellOut.new(command)
         Volay::Config.logger.debug(command)
         result.run_command
+
+        return unless result.exitstatus.zero?
+
         Volay::Config.logger.error(result.stderr) unless result.stderr.empty?
         Volay::Config.logger.debug(result.stdout) unless result.stdout.empty?
         result.stdout

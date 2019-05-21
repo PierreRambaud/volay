@@ -7,6 +7,8 @@ Metrics/AbcSize:
   Enabled: false
 Metrics/ClassLength:
   Enabled: false
+Metrics/LineLength:
+  Max: 120
 Metrics/MethodLength:
   Enabled: false
 Metrics/PerceivedComplexity:
@@ -22,6 +24,3 @@ Style/FrozenStringLiteralComment:
   Exclude:
     - lib/volay/cli.rb
     - lib/volay/version.rb
-
-Performance/RegexpMatch:
-  Enabled: false

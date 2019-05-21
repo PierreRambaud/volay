@@ -11,11 +11,16 @@ describe 'Volay::Mixer::Pulse' do
 
   def stub_shellout(cmd, stdout = '', stderr = '')
     shellout = double(
-      run_command: nil,
       error!: nil,
       stdout: stdout,
-      stderr: stderr
+      stderr: stderr,
+      exitstatus: double(
+        zero?: true
+      )
     )
+
+    allow(shellout).to receive(:run_command)
+      .once
 
     expect(Mixlib::ShellOut).to receive(:new)
       .with("pacmd #{cmd}")
